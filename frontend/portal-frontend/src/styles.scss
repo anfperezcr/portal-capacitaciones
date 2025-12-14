@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+/* 1️⃣ Core Material (obligatorio una sola vez) */
+@include mat.core();
+
+/* 2️⃣ Definir el tema (Material 3) */
+$portal-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: (
+    brand-family: 'Roboto, "Helvetica Neue", sans-serif'
+  )
+));
+
+/* 3️⃣ Aplicar el tema DENTRO de un selector (REQUERIDO en M3) */
+:root {
+  @include mat.all-component-themes($portal-theme);
+}
+
+/* 4️⃣ Estilos globales */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

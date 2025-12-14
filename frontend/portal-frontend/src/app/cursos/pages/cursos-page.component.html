@@ -1,0 +1,47 @@
+<h1>🚀 Cursos cargados</h1>
+
+<div *ngFor="let modulo of cursosPorModulo | keyvalue">
+
+
+
+  <h2>{{ modulo.key }}</h2>
+
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <mat-card *ngFor="let curso of modulo.value" style="width: 300px;">
+
+      <mat-card-title>{{ curso.nombre }}</mat-card-title>
+
+      <mat-card-content>
+        <p>{{ curso.descripcion }}</p>
+      </mat-card-content>
+
+
+      <mat-card-actions>
+
+        <!-- Botón solo si está INICIADO -->
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="progresosPorCurso[curso.id]?.estado === 'INICIADO'"
+          (click)="marcarCompletado(curso.id)">
+          Marcar como completado
+        </button>
+
+        <!-- Texto si está COMPLETADO -->
+        <span
+          *ngIf="progresosPorCurso[curso.id]?.estado === 'COMPLETADO'">
+          ✅ Completado
+        </span>
+
+        <!-- 🏅 Insignia -->
+        <div *ngIf="insigniasPorCurso[curso.id]" style="margin-top: 8px;">
+          🏅 Insignia obtenida
+        </div>
+
+      </mat-card-actions>
+
+
+    </mat-card>
+  </div>
+
+</div>

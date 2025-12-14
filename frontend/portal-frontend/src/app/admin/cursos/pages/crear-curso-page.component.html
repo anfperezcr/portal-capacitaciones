@@ -1,0 +1,55 @@
+<h1>{{ esEdicion ? '✏️ Editar curso' : '➕ Crear curso' }}</h1>
+
+<form (ngSubmit)="guardar()" #cursoForm="ngForm">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      name="nombre"
+      [(ngModel)]="curso.nombre"
+      required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      matInput
+      name="descripcion"
+      [(ngModel)]="curso.descripcion"
+      required>
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Módulo</mat-label>
+    <mat-select
+      name="modulo"
+      [(ngModel)]="curso.modulo"
+      required>
+
+      <mat-option value="FULLSTACK">Fullstack</mat-option>
+      <mat-option value="APIS">APIs</mat-option>
+      <mat-option value="CLOUD">Cloud</mat-option>
+      <mat-option value="DATA">Data</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="cursoForm.invalid">
+    {{ esEdicion ? 'Actualizar' : 'Crear' }}
+  </button>
+
+  <button
+    mat-button
+    type="button"
+    routerLink="/admin/cursos">
+    Cancelar
+  </button>
+
+</form>

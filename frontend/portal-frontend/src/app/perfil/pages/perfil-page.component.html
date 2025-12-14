@@ -1,0 +1,55 @@
+<h1>👤 Perfil</h1>
+
+<!-- Usuario -->
+<div *ngIf="usuario">
+  <h2>{{ usuario.nombre }}</h2>
+  <p>Usuario: {{ usuario.username }}</p>
+  <p>Rol: {{ usuario.rol }}</p>
+</div>
+
+<hr />
+
+<!-- 🛠 Acciones Admin -->
+<div *ngIf="esAdmin()" style="margin: 16px 0">
+  <button
+    mat-raised-button
+    color="warn"
+    routerLink="/admin/cursos">
+    🛠 Administrar cursos
+  </button>
+</div>
+
+
+<!-- Historial -->
+<h2>📚 Historial de cursos</h2>
+
+<ul>
+  <li *ngFor="let p of progresos">
+    Curso ID {{ p.cursoId }} —
+    <strong>{{ p.estado }}</strong>
+  </li>
+</ul>
+
+<hr />
+
+<!-- Insignias -->
+
+<h2>🏅 Insignias Obtenidas </h2>
+
+<div *ngIf="insignias.length === 0">
+  Aún no tienes insignias
+</div>
+
+<div *ngIf="insignias.length > 0" style="display: flex; gap: 16px; flex-wrap: wrap;">
+  <div *ngFor="let i of insignias"
+       style="border: 1px solid #ccc; padding: 12px; border-radius: 8px; width: 220px;">
+
+    <h3>🏅 Insignia</h3>
+
+    <p><strong>Curso:</strong> {{ i.cursoNombre || ('ID ' + i.cursoId) }}</p>
+
+    <p><strong>Otorgada:</strong></p>
+    <p>{{ i.fechaOtorgada | date:'short' }}</p>
+  </div>
+</div>
+

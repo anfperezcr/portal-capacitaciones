@@ -37,6 +37,16 @@ build/
 .env.*
 
 # frontend
-frontend/portal-frontend/
 frontend/portal-frontend/node_modules/
+
+# Build output
+frontend/portal-frontend/dist/
+frontend/portal-frontend/.angular/
+
+# Temporary and cache files
+frontend/portal-frontend/.cache/
+frontend/portal-frontend/.npm/
+frontend/portal-frontend/npm-debug.log*
+frontend/portal-frontend/yarn-debug.log*
+frontend/portal-frontend/yarn-error.log*
 

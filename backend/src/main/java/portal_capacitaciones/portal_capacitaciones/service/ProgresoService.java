@@ -2,6 +2,7 @@ package portal_capacitaciones.portal_capacitaciones.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import portal_capacitaciones.portal_capacitaciones.dto.InsigniaRequestDTO;
 import portal_capacitaciones.portal_capacitaciones.dto.ProgresoRequestDTO;
 import portal_capacitaciones.portal_capacitaciones.exceptions.DuplicateResourceException;
 import portal_capacitaciones.portal_capacitaciones.exceptions.ResourceNotFoundException;
@@ -17,15 +18,18 @@ public class ProgresoService {
     private final ProgresoRepository progresoRepository;
     private final UsuarioRepository usuarioRepository;
     private final CursoRepository cursoRepository;
+    private final InsigniaService insigniaService;
 
     public ProgresoService(
             ProgresoRepository progresoRepository,
             UsuarioRepository usuarioRepository,
-            CursoRepository cursoRepository
+            CursoRepository cursoRepository, InsigniaService insigniaService
     ) {
         this.progresoRepository = progresoRepository;
         this.usuarioRepository = usuarioRepository;
         this.cursoRepository = cursoRepository;
+
+        this.insigniaService = insigniaService;
     }
 
     // Crear progreso
@@ -71,11 +75,32 @@ public class ProgresoService {
 
         Progreso progreso = obtenerPorId(id);
 
+        // 1️⃣ Actualizar estado
         progreso.setEstado(dto.getEstado());
         progreso.setFechaActualizacion(LocalDateTime.now());
 
-        return progresoRepository.save(progreso);
+        Progreso progresoActualizado = progresoRepository.save(progreso);
+
+        // 2️⃣ Si el curso fue COMPLETADO → otorgar insignia
+        if (dto.getEstado() == EstadoCurso.COMPLETADO) {
+
+            InsigniaRequestDTO insigniaDTO = new InsigniaRequestDTO();
+            insigniaDTO.setUsuarioId(progreso.getUsuario().getId());
+            insigniaDTO.setCursoId(progreso.getCurso().getId());
+
+            // imagen simple por ahora
+            insigniaDTO.setImagen("insignia-curso.png");
+
+            try {
+                insigniaService.crearInsignia(insigniaDTO);
+            } catch (DuplicateResourceException e) {
+                // si ya existe la insignia, no hacemos nada
+            }
+        }
+
+        return progresoActualizado;
     }
+
 
     // Eliminar progreso
     @Transactional

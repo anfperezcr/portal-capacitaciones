@@ -1,0 +1,33 @@
+<h1>🛠 Crear Curso</h1>
+
+<form [formGroup]="form" (ngSubmit)="guardar()" style="max-width: 400px">
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="descripcion"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Módulo</mat-label>
+    <mat-select formControlName="modulo">
+      <mat-option value="APIS">APIs</mat-option>
+      <mat-option value="CLOUD">Cloud</mat-option>
+      <mat-option value="DATA">Data</mat-option>
+      <mat-option value="FULLSTACK">Fullstack</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid">
+    Crear curso
+  </button>
+
+</form>

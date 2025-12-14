@@ -1,0 +1,27 @@
+<h1>🛠 Administración de cursos</h1>
+
+<button mat-raised-button color="primary" routerLink="/admin/cursos/nuevo">
+  ➕ Crear curso
+</button>
+
+<div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap;">
+  <mat-card *ngFor="let curso of cursos" style="width: 300px;">
+    <mat-card-title>{{ curso.nombre }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ curso.descripcion }}</p>
+      <p><strong>Módulo:</strong> {{ curso.modulo }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button color="accent"
+              [routerLink]="['/admin/cursos/editar', curso.id]">
+        ✏️ Editar
+      </button>
+
+      <button mat-button color="warn"
+              (click)="eliminarCurso(curso.id)">
+        🗑 Eliminar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
