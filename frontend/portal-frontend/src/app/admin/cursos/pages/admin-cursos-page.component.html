@@ -18,10 +18,14 @@
         ✏️ Editar
       </button>
 
-      <button mat-button color="warn"
-              (click)="eliminarCurso(curso.id)">
+      <button
+        mat-button
+        color="warn"
+        *ngIf="curso.id"
+        (click)="eliminarCurso(curso.id)">
         🗑 Eliminar
       </button>
+
     </mat-card-actions>
   </mat-card>
 </div>

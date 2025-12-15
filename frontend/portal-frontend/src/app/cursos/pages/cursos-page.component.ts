@@ -78,6 +78,20 @@ export class CursosPageComponent implements OnInit {
   }
 
 
+  //metodo para iniciar curso, cuando no hay progreso en DB
+      iniciarCurso(cursoId: number) {
+
+        this.progresoService.crearProgreso({
+          usuarioId: this.usuarioId,
+          cursoId: cursoId,
+          estado: 'INICIADO'
+        }).subscribe(progreso => {
+
+          this.progresosPorCurso[cursoId] = progreso;
+
+        });
+      }
+
   marcarCompletado(cursoId: number) {
 
     const progreso = this.progresosPorCurso[cursoId];

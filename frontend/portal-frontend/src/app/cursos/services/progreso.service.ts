@@ -26,4 +26,13 @@ export class ProgresoService {
     return this.http.get<Progreso[]>(this.apiUrl);
   }
 
+  crearProgreso(data: {
+    usuarioId: number;
+    cursoId: number;
+    estado: 'INICIADO' | 'COMPLETADO';
+  }) {
+    return this.http.post<Progreso>(this.apiUrl, data);
+  }
+
+
 }

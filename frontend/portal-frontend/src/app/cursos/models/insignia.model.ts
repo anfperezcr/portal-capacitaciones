@@ -4,5 +4,5 @@ export interface Insignia {
   fechaOtorgada: string;
   usuarioId: number;
   cursoId: number;
-  cursoNombre?: string; // 👈 opcional, útil para mostrar
+  nombreCurso: string; // 👈 opcional, útil para mostrar
 }

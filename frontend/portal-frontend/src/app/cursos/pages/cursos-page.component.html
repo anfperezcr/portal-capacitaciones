@@ -18,27 +18,32 @@
 
       <mat-card-actions>
 
-        <!-- Botón solo si está INICIADO -->
+        <!-- ▶️ NO HAY PROGRESO -->
         <button
           mat-raised-button
           color="primary"
-          *ngIf="progresosPorCurso[curso.id]?.estado === 'INICIADO'"
-          (click)="marcarCompletado(curso.id)">
-          Marcar como completado
+          *ngIf="curso.id && !progresosPorCurso[curso.id]"
+          (click)="iniciarCurso(curso.id)">
+          ▶️ Iniciar curso
         </button>
 
-        <!-- Texto si está COMPLETADO -->
+        <!-- 🔄 PROGRESO INICIADO -->
+        <button
+          mat-raised-button
+          color="accent"
+          *ngIf="curso.id && progresosPorCurso[curso.id]?.estado === 'INICIADO'"
+          (click)="marcarCompletado(curso.id)">
+          ✅ Completar curso
+        </button>
+
+        <!-- 🏅 COMPLETADO -->
         <span
-          *ngIf="progresosPorCurso[curso.id]?.estado === 'COMPLETADO'">
-          ✅ Completado
+          *ngIf="curso.id && progresosPorCurso[curso.id]?.estado === 'COMPLETADO'">
+          🏅 Curso completado
         </span>
 
-        <!-- 🏅 Insignia -->
-        <div *ngIf="insigniasPorCurso[curso.id]" style="margin-top: 8px;">
-          🏅 Insignia obtenida
-        </div>
-
       </mat-card-actions>
+
 
 
     </mat-card>

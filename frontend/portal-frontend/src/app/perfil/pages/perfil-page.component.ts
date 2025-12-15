@@ -13,6 +13,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
+import { CursoService } from '../../cursos/services/curso.service';
 
 @Component({
   selector: 'app-perfil-page',
@@ -28,6 +29,9 @@ export class PerfilPageComponent implements OnInit {
   progresos: Progreso[] = [];
   insignias: Insignia[] = [];
 
+  cursosMap: Record<number, string> = {};
+
+
   // 🔴 Temporal (luego vendrá del login)
   usuarioId!: number;
 
@@ -36,7 +40,8 @@ export class PerfilPageComponent implements OnInit {
     private usuarioService: UsuarioService,
     private progresoService: ProgresoService,
     private insigniaService: InsigniaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cursoService: CursoService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +57,17 @@ export class PerfilPageComponent implements OnInit {
     // 👤 Perfil
     this.usuarioService.obtenerPorId(this.usuarioId)
       .subscribe(usuario => this.usuario = usuario);
+
+
+    this.cursoService.listarCursos().subscribe(cursos => {
+      cursos.forEach(curso => {
+        if (curso.id) {
+          this.cursosMap[curso.id] = curso.nombre;
+        }
+      });
+    });
+
+
 
     // 📚 Historial
     this.progresoService.listarProgresos()

@@ -47,8 +47,19 @@ public class InsigniaService {
             throw new DuplicateResourceException("Este usuario ya tiene una insignia de este curso.");
         }
 
+        // Elegir imagen según el curso
+        String imagen;
+
+        switch (curso.getModulo()) {
+            case APIS -> imagen = "apis.png";
+            case CLOUD -> imagen = "cloud.png";
+            case DATA -> imagen = "data.png";
+            case FULLSTACK -> imagen = "fullstack.png";
+            default -> imagen = "default.png";
+        }
+
         Insignia insignia = new Insignia();
-        insignia.setImagen(dto.getImagen());
+        insignia.setImagen(imagen);
         insignia.setFechaOtorgada(LocalDateTime.now());
         insignia.setUsuario(usuario);
         insignia.setCurso(curso);

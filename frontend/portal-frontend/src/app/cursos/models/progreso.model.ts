@@ -3,4 +3,5 @@ export interface Progreso {
   estado: 'INICIADO' | 'COMPLETADO';
   cursoId: number;
   usuarioId: number;
+  nombreCurso?: string;
 }
