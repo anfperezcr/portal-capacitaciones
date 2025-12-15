@@ -16,6 +16,7 @@ Una vez levantado el backend, la documentación está disponible en:
 
 http://localhost:8080/swagger-ui.html
 
+![Swagger UI](docs/images/swagger-ui.png)
 
 
 La documentación se genera automáticamente a partir de los controladores del backend y se mantiene sincronizada con el código.
