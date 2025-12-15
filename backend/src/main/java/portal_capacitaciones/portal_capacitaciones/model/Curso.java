@@ -1,5 +1,6 @@
 package portal_capacitaciones.portal_capacitaciones.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,8 +33,10 @@ public class Curso {
     // --- Relaciones ---
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Progreso> progresos;
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Insignia> insignias;
 }

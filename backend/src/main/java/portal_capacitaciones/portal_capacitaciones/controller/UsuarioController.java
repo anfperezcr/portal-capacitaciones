@@ -1,5 +1,6 @@
 package portal_capacitaciones.portal_capacitaciones.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,11 @@ import portal_capacitaciones.portal_capacitaciones.model.Usuario;
 import portal_capacitaciones.portal_capacitaciones.service.UsuarioService;
 
 import java.util.List;
+
+@Tag(
+        name = "Usuarios",
+        description = "Gestión de usuarios del sistema"
+)
 @RestController
 @RequestMapping("/api/v1/usuarios")
 public class UsuarioController {

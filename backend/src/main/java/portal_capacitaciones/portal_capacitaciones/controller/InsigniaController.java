@@ -1,5 +1,6 @@
 package portal_capacitaciones.portal_capacitaciones.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,12 @@ import portal_capacitaciones.portal_capacitaciones.model.Insignia;
 import portal_capacitaciones.portal_capacitaciones.service.InsigniaService;
 
 import java.util.List;
+
+
+@Tag(
+        name = "Insignias",
+        description = "Gestión de insignias otorgadas a los usuarios por completar cursos"
+)
 
 @RestController
 @RequestMapping("/api/v1/insignias")

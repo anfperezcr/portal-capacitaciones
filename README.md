@@ -2,6 +2,27 @@
 
 Aplicación fullstack para gestión de cursos y capacitaciones.
 
+## 📄 Documentación API (Swagger / OpenAPI)
+
+El backend expone su documentación interactiva mediante **Swagger (OpenAPI 3)**, lo que permite:
+
+- Explorar todos los endpoints disponibles
+- Ver los modelos de request y response
+- Probar las APIs directamente desde el navegador
+- Facilitar la integración con el frontend y pruebas manuales
+
+### 🔗 Acceso a Swagger UI
+Una vez levantado el backend, la documentación está disponible en:
+
+http://localhost:8080/swagger-ui.html
+
+o
+
+http://localhost:8080/swagger-ui
+
+La documentación se genera automáticamente a partir de los controladores del backend y se mantiene sincronizada con el código.
+
+
 ## 🧩 Stack
 - Backend: Java 17, Spring Boot, JPA, PostgreSQL
 - Frontend: Angular 17+, Angular Material

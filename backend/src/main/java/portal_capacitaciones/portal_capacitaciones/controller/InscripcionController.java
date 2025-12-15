@@ -1,5 +1,6 @@
 package portal_capacitaciones.portal_capacitaciones.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,12 @@ import portal_capacitaciones.portal_capacitaciones.service.InscripcionService;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+
+@Tag(
+        name = "Inscripciones",
+        description = "Inscripción de usuarios a cursos y consulta de inscripciones"
+)
 
 @RestController
 @RequestMapping("/api/v1/inscripciones")
