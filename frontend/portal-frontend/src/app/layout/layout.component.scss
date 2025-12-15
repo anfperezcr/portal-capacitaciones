@@ -9,3 +9,32 @@
 .content {
   padding: 16px;
 }
+
+/* Empuja lo que venga después hacia la derecha */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Usuario en el toolbar */
+.toolbar-user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 16px;
+}
+
+/* Título con algo de separación */
+.toolbar-title {
+  font-weight: 500;
+  margin-right: 16px;
+}
+
+.app-toolbar {
+  //background-color: #1e293b; /* azul oscuro */
+  background-color: #586BE0;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+}
+

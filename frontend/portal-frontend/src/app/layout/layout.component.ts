@@ -7,6 +7,11 @@ import { MatListModule } from '@angular/material/list';
 
 import { AuthService } from '../auth/services/auth.service';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-layout',
@@ -17,9 +22,13 @@ import { AuthService } from '../auth/services/auth.service';
 
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    NgIf
   ],
-  templateUrl: './layout.component.html'
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
 
@@ -30,7 +39,22 @@ export class LayoutComponent {
     return this.authService.getRol() === 'ADMIN';
   }
 
-
+  logout() {
+      this.authService.logout();
 
 
   }
+
+  irAGithub() {
+    window.open(
+      'https://github.com/anfperezcr/portal-capacitaciones',
+      '_blank'
+    );
+  }
+
+  getNombreUsuario(): string {
+    return this.authService.getUsuario()?.nombre ?? '';
+  }
+
+
+}

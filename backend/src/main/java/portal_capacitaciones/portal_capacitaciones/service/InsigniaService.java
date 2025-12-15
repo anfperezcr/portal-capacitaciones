@@ -13,6 +13,7 @@ import portal_capacitaciones.portal_capacitaciones.repository.InsigniaRepository
 import portal_capacitaciones.portal_capacitaciones.repository.UsuarioRepository;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -60,7 +61,10 @@ public class InsigniaService {
 
         Insignia insignia = new Insignia();
         insignia.setImagen(imagen);
-        insignia.setFechaOtorgada(LocalDateTime.now());
+        insignia.setFechaOtorgada(
+                LocalDateTime.now(ZoneId.of("America/Bogota"))
+        );
+
         insignia.setUsuario(usuario);
         insignia.setCurso(curso);
 

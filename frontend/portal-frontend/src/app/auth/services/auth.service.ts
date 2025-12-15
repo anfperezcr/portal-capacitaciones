@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoginRequest } from '../models/login-request.model';
 import { LoginResponse } from '../models/login-response.model';
 import { Observable, tap } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,12 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080/api/v1/auth/login';
   private STORAGE_KEY = 'usuario';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) {}
+
+
 
   login(data: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, data)
@@ -26,6 +32,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.STORAGE_KEY);
+    this.router.navigate(['/login']);
   }
 
   getUsuario(): LoginResponse | null {
