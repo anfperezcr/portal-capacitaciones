@@ -11,6 +11,13 @@ El backend expone su documentación interactiva mediante **Swagger (OpenAPI 3)**
 - Probar las APIs directamente desde el navegador
 - Facilitar la integración con el frontend y pruebas manuales
 
+### 🔗 Portal de capacitaciones
+Vista del panel principal:
+
+
+
+![Swagger UI](docs/images/portal-capacitaciones2.png)
+
 ### 🔗 Acceso a Swagger UI
 Una vez levantado el backend, la documentación está disponible en:
 
